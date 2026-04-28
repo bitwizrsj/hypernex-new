@@ -86,8 +86,7 @@ export default function TestimonialsAdmin() {
            <p className="text-gray-500 text-sm">Manage client feedback and social proof.</p>
         </div>
         <button 
-          onClick={() => setIsOpen(!isOpen)} // This will be handled by setIsAdding
-          onClickCapture={() => setIsAdding(true)}
+          onClick={() => setIsAdding(true)}
           className="px-8 py-4 bg-white text-gray-900 rounded-2xl text-sm font-bold flex items-center gap-3 hover:bg-purple-500 hover:text-white transition-all shadow-xl shadow-black/10"
         >
           <Plus className="w-4 h-4" />
