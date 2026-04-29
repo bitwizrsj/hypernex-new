@@ -114,7 +114,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Section 3: The Team ── */}
-      <section className="py-32 px-8 lg:px-16">
+      {/* <section className="py-32 px-8 lg:px-16">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-20">
           <div className="text-center flex flex-col gap-6">
              <h2 className="text-3xl font-bold tracking-tight">The minds behind the work.</h2>
@@ -140,7 +140,7 @@ export default function AboutPage() {
              ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── Footer-ish CTA ── */}
       <section className="py-32 px-8 lg:px-16 bg-gradient-to-t from-purple-900/20 to-[#0b0b0e] border-t border-white/5">
