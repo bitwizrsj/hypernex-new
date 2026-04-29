@@ -11,20 +11,19 @@ export default function AnalyticsTracker() {
 
   useEffect(() => {
     const trackPageView = async () => {
-      // Don't track admin pages
-      if (pathname.startsWith('/admin')) return;
+      // Don't track admin pages or API routes
+      if (pathname.startsWith('/admin') || pathname.startsWith('/api')) return;
 
       const fullPath = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
       
-      try {
-        await supabase.from('page_views').insert({
-          path: fullPath,
-          referrer: document.referrer || 'Direct',
-          user_agent: navigator.userAgent
-        });
-      } catch (err) {
-        // Silently fail analytics
-        console.error('Analytics failed:', err);
+      const { error } = await supabase.from('page_views').insert({
+        path: fullPath,
+        referrer: document.referrer || 'Direct',
+        user_agent: navigator.userAgent
+      });
+
+      if (error) {
+        console.error('Supabase Analytics Error:', error.message, error.details);
       }
     };
 
@@ -34,17 +33,14 @@ export default function AnalyticsTracker() {
   return null;
 }
 
-/**
- * Utility to track button clicks manually
- */
 export const trackClick = async (buttonId: string, path: string) => {
   const supabase = createClient();
-  try {
-    await supabase.from('button_clicks').insert({
-      button_id: buttonId,
-      page_path: path
-    });
-  } catch (err) {
-    console.error('Click tracking failed:', err);
+  const { error } = await supabase.from('button_clicks').insert({
+    button_id: buttonId,
+    page_path: path
+  });
+  
+  if (error) {
+    console.error('Supabase Click Tracking Error:', error.message);
   }
 };

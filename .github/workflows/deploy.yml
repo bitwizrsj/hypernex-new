@@ -1,0 +1,36 @@
+name: Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main  # Set this to your default branch (main or master)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /var/www/hypernex-technologies
+            
+            # Pull the latest code
+            git pull origin main
+            
+            # Install and Build
+            npm install
+            npm run build
+            
+            # Restart the PM2 process
+            PORT=3001 pm2 restart hypernex-new || PORT=3001 pm2 start npm --name "hypernex-new" -- start
+            
+            # Save PM2 state
+            pm2 save
