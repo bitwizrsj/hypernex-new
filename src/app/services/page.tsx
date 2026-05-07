@@ -12,7 +12,8 @@ import {
   Database,
   Cpu,
   Monitor,
-  Shield
+  Shield,
+  Users
 } from "lucide-react";
 
 export default function ServicesPage() {
@@ -207,6 +208,32 @@ export default function ServicesPage() {
                         <span className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors uppercase tracking-widest">{item}</span>
                      </div>
                    ))}
+                </div>
+              </div>
+           </div>
+
+          {/* Service 07: Staff Augmentation */}
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+             <div className="flex flex-col gap-10">
+                <div className="flex flex-col gap-6">
+                   <span className="text-violet-500 font-mono text-xs">07 // TALENT EXTENSION</span>
+                   <h2 className="text-4xl font-bold tracking-tight">Staff Augmentation.</h2>
+                   <p className="text-gray-500 text-sm leading-relaxed">
+                      On-demand elite engineering and design talent embedded directly into your team. Move faster, ship more, and scale your capacity without the overhead of full-time hiring.
+                   </p>
+                </div>
+                <div className="grid grid-cols-2 gap-6">
+                   {['Pre-vetted Talent', 'Rapid Onboarding', 'Seamless Integration', 'Senior-only Talent'].map(item => (
+                     <div key={item} className="flex items-center gap-3 group">
+                        <div className="w-1.5 h-1.5 rounded-full bg-violet-500 group-hover:scale-150 transition-transform" />
+                        <span className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors uppercase tracking-widest">{item}</span>
+                     </div>
+                   ))}
+                </div>
+             </div>
+             <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/5 bg-gray-900 group">
+                <div className="absolute inset-0 bg-gradient-to-bl from-violet-500/20 to-fuchsia-500/20 flex items-center justify-center">
+                   <Users className="w-32 h-32 text-violet-400/20 group-hover:scale-110 transition-transform duration-1000" />
                 </div>
              </div>
           </div>

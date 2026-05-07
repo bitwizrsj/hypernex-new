@@ -69,7 +69,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Section 2: Core Philosophy (The Pillars) ── */}
-      <section className="py-32 px-8 lg:px-16 bg-white text-gray-900 rounded-[4rem]">
+      <section className="py-32 px-8 lg:px-16 bg-white text-gray-900">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-24">
              <div className="flex flex-col gap-6">

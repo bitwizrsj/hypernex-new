@@ -10,7 +10,19 @@ import { createClient } from "@/lib/supabase/client";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
+  { 
+    name: "Services", 
+    href: "/services",
+    subLinks: [
+      { name: "UI/UX Design", href: "/services/ui-ux-design" },
+      { name: "Fullstack Development", href: "/services/fullstack-development" },
+      { name: "Digital Strategy", href: "/services/digital-strategy" },
+      { name: "AI & Automation", href: "/services/ai-automation" },
+      { name: "Product Strategy", href: "/services/product-strategy" },
+      { name: "Security & DevOps", href: "/services/security-devops" },
+      { name: "Staff Augmentation", href: "/services/staff-augmentation" },
+    ]
+  },
   { name: "About", href: "/about" },
   { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
@@ -99,18 +111,41 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
             return (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                className={`relative transition-all duration-300 ${
-                  isActive ? "text-white" : "text-gray-400 hover:text-white"
-                }`}
-              >
-                {link.name}
-                {isActive && (
-                  <span className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-purple-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+              <div key={link.name} className="relative group flex items-center h-full py-6 -my-6">
+                <Link 
+                  href={link.href} 
+                  className={`relative transition-all duration-300 ${
+                    isActive ? "text-white" : "text-gray-400 group-hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-purple-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+                  )}
+                </Link>
+
+                {link.subLinks && (
+                  <div className="absolute top-full left-0 pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                    <div className="bg-[#0b0b0e] border border-white/10 rounded-2xl p-3 w-[280px] shadow-2xl shadow-black/50 flex flex-col gap-1 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+                      {link.subLinks.map(sub => (
+                        <Link
+                          key={sub.name}
+                          href={sub.href}
+                          className={`relative z-10 px-4 py-3 rounded-xl transition-all ${
+                            pathname === sub.href 
+                              ? "bg-white/10 text-white" 
+                              : "text-gray-400 hover:bg-white/5 hover:text-white"
+                          } flex items-center justify-between group/item`}
+                        >
+                          <span className="tracking-widest leading-relaxed">{sub.name}</span>
+                          <ArrowUpRight className={`w-3 h-3 transition-opacity ${pathname === sub.href ? "opacity-100" : "opacity-0 group-hover/item:opacity-100"}`} />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 )}
-              </Link>
+              </div>
             );
           })}
         </div>
@@ -147,16 +182,33 @@ export default function Navbar() {
             {navLinks.map((link, i) => {
               const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
               return (
-                <Link 
-                  key={link.name} 
-                  href={link.href}
-                  className={`text-3xl font-bold tracking-tight uppercase italic flex items-center justify-between group ${
-                    isActive ? "text-purple-500" : "text-white"
-                  }`}
-                >
-                  {link.name}
-                  <ArrowUpRight className={`w-5 h-5 transition-opacity ${isActive ? "opacity-100" : "opacity-20 group-hover:opacity-100"}`} />
-                </Link>
+                <div key={link.name} className="flex flex-col gap-4">
+                  <Link 
+                    href={link.href}
+                    className={`text-3xl font-bold tracking-tight uppercase italic flex items-center justify-between group ${
+                      isActive ? "text-purple-500" : "text-white"
+                    }`}
+                  >
+                    {link.name}
+                    <ArrowUpRight className={`w-5 h-5 transition-opacity ${isActive ? "opacity-100" : "opacity-20 group-hover:opacity-100"}`} />
+                  </Link>
+                  {link.subLinks && (
+                    <div className="flex flex-col gap-3 pl-4 border-l-2 border-white/10 ml-2">
+                      {link.subLinks.map(sub => (
+                        <Link 
+                          key={sub.name}
+                          href={sub.href}
+                          onClick={() => setIsOpen(false)}
+                          className={`text-sm font-bold tracking-widest uppercase flex items-center justify-between ${
+                            pathname === sub.href ? "text-purple-400" : "text-gray-500 hover:text-white transition-colors"
+                          }`}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>

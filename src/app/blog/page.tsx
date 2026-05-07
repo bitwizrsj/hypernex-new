@@ -79,7 +79,7 @@ export default async function BlogPage() {
                 </Link>
 
                 {/* Grid for the rest */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-12">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                    {remainingPosts.map((post, i) => (
                      <Link key={i} href={`/blog/${post.slug}`} className="group flex flex-col gap-8 bg-white border border-gray-100 p-8 rounded-[2.5rem] hover:border-indigo-600/50 hover:shadow-2xl hover:shadow-indigo-600/5 transition-all">
                         <div className="relative aspect-[16/8] rounded-[1.5rem] overflow-hidden bg-gray-100">

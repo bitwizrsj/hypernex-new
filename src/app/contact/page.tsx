@@ -179,10 +179,13 @@ export default function ContactPage() {
                                  className="w-full bg-[#f6f6fb] border-none rounded-2xl px-6 py-4 text-xs sm:text-sm text-gray-900 focus:ring-2 focus:ring-indigo-600 transition-all font-medium outline-none appearance-none cursor-pointer"
                               >
                                  <option value="" className="text-gray-900">Select a service</option>
-                                 <option className="text-gray-900">Web Development</option>
-                                 <option className="text-gray-900">UI/UX Design</option>
-                                 <option className="text-gray-900">Strategic Branding</option>
-                                 <option className="text-gray-900">Growth & Marketing</option>
+                                 <option value="UI/UX Design" className="text-gray-900">UI/UX Design</option>
+                                 <option value="Fullstack Development" className="text-gray-900">Fullstack Development</option>
+                                 <option value="Digital Strategy" className="text-gray-900">Digital Strategy</option>
+                                 <option value="AI & Automation" className="text-gray-900">AI & Automation</option>
+                                 <option value="Product Strategy" className="text-gray-900">Product Strategy</option>
+                                 <option value="Security & DevOps" className="text-gray-900">Security & DevOps</option>
+                                 <option value="Staff Augmentation" className="text-gray-900">Staff Augmentation</option>
                               </select>
                               <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-20">
                                  <Send className="w-3.5 h-3.5 rotate-90" />
